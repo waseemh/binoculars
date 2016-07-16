@@ -4,5 +4,36 @@ Sherlock is an open source tool for automating visual regression tests using Sel
 
 ##How it Works
 
-On its first run, Sherlock saves a baseline screenshot for all elements that need to be visually tested. Consecutive runs will capture a new screenshot for each element and compare it with its corresponding baseline.
-Using its image comparison engine, Sherlock will compare the screenshots and fail the test if mismatch occurs.
+On its first run, Sherlock saves a baseline screenshot for all elements that need to be visually tested. Consecutive runs will capture a new screenshot for each element and compare it with the corresponding baseline.
+Using its image comparison engine, Sherlock will check for mismatch in screenshots and fail the test if mismatch occurs.
+
+##Getting Started
+
+To initialize Sherlock, you must provide it with a WebDriver object.
+
+``` java
+WebDriver driver = new FirefoxDriver();
+sherlock = new Sherlock(driver);
+```
+
+Sherlock is now ready to go! 
+
+Next step would be start capturing elements in UI. Sherlock will locate elements on screen using WebDriver's By selectors. Each captured element is uniquely identified by its given label. 
+
+In below example, we will capture logo image using ID selector type. We will label this element as "logo", so Sherlock can refer to it in the future.
+
+``` java
+sherlock.capture("logo", By.id("uh-logo"));
+```
+
+In order to check for regression in a specific element, you can compare an element with its baseline using label:
+
+``` java
+sherlock.compare("logo");
+```
+
+In order to check all captured elements in a test, you can compare all elements at once:
+
+``` java
+sherlock.compareAll();
+```
