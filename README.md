@@ -1,6 +1,13 @@
 # Sherlock
 
-Sherlock is an open source tool for automating visual regression tests using Selenium WebDriver. Thanks to its simple API, Sherlock can be semeassly integrated into your existing Selenium tests.
+Sherlock is an open source tool for automating visual regression tests for web and mobile. Thanks to its simple API, Sherlock can be semeassly integrated into your existing Selenium tests.
+
+###Features
+- Uses Selenium WebDriver API. Can be easily integrated into existing Selenium tests
+- Support all browsers and mobile devices which include screenshot capability
+- Uses Resemble.js Java implementation for sophisticated image comparisons algorithm (not pixel by pixel)
+- Fully configurable - Each tiny configuration can be modified using Configuration API
+- Detailed reports of visual mismatch
 
 ##How it Works
 
@@ -37,3 +44,6 @@ In order to check all captured elements in a test, you can compare all elements 
 ``` java
 sherlock.compareAll();
 ```
+
+##Configuration
+Sherlock is fully configurable.
