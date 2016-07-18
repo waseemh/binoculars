@@ -1,12 +1,12 @@
 ![alt text](https://github.com/waseemh/binoculars/blob/master/tool-2.png?raw=true "Logo Title Text 1")
 
-Binoculars is an open source tool for automating visual regression tests for web and mobile. Thanks to its simple API, Binoculars can be seamlessly integrated into your existing Selenium tests.
+Binoculars is an open source tool for automating visual regression tests for web and mobile, using Selenium WebDriver.
 
 ###Features
 - Uses Selenium WebDriver API. Can be easily integrated into existing Selenium tests
-- Support all browsers and mobile devices which include screenshot capability
-- Uses Resemble.js Java implementation for sophisticated image comparisons algorithm (not pixel by pixel)
-- Fully configurable - Each tiny configuration can be modified using Configuration API
+- Support all Webdriver-backed browsers and mobile devices with screenshot capability
+- Uses Resemble.js Java implementation for smart image comparisons algorithm (not pixel by pixel)
+- Fully configurable - Each configuration can be modified using Configuration API
 - Detailed reports of visual mismatch
 
 ##How it Works
