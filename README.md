@@ -46,4 +46,24 @@ binoculars.compareAll();
 ```
 
 ##Configuration
-Binoculars is fully configurable.
+Binoculars is fully configurable. Below is a full list of available configurations:
+
+- rootFolder: root folder for storing all screenshots
+- failuresFolder: folder for storing failed screenshots
+- screenshotsFolder: folder for storing captured screenshots
+- baselineFolder: folder for storing/loading baseline screenshots
+- reportFolder: folder for report output
+- baselineMode: Force to run in baseline mode, overriding any previous captured screenshots
+- compareUponCapture: If set to true, screenshot comparison will be immediately after capturing
+- engine: Image comparison engine
+- mismatchThreshold: Set threshold for image mismatch percentage. If a comparison result is above mismatch, comparison will be marked as failed
+- baselineExtension: Suffix for baseline screenshots filenames
+- captureExtension: Suffix for captured screenshots filenames
+- diffExtension: Suffix for diff images filenames
+- failExtension: Suffix for fail screenshots filenames
+- diffColor: Color to use for highlighting mismatch in diff images.
+- resourceManager:
+- executor:
+- handler:
+- absorbFailures: If set to true, comparison mismatch failures will not throw an AssertionError.
+- reporter: 
