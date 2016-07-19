@@ -77,9 +77,23 @@ Binoculars uses Java implementation of [Resemble.js](http://huddle.github.io/Res
 - IgnoreAntialiasing: Same as above, but if a pixel is found to be anti-aliased, only brightness will becompared, instead of the full color component
 - IgnoreColors: Ignores the colors and compares only the brightness
 
-
 ###Custom Engines
-		
+In order to integrate your custom comparison engine, you can implement ImageComparisonEngine interface and provide it in  configuration. For example:
+
+Implementing custom engine:
+``` java
+public class CustomImageComparisonEngine implements ImageComparisonEngine {
+
+	public ComparisonResult compare(String captureName, File baseline, File imageUnderTest) {
+		//do something and return ComparisonResult object
+	}
+}
+```
+Setting custom engine in Configuration class:
+```java
+binoculars.getConfiguration().setEngine(new CustomImageComparisonEngine());
+```
+
 ##Reporting
 Bincoulars produces a detailed report of all comparisons. Reports will be generated in these cases:
 
