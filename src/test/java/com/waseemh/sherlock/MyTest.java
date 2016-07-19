@@ -34,7 +34,7 @@ public class MyTest {
 	
 	@Test
 	public void test2() {
-		binoculars.capture("top bar",By.className("view_default"));
+		binoculars.capture("top bar",By.id("mega-topbar"));
 		binoculars.compare("top bar");
 	}
 	

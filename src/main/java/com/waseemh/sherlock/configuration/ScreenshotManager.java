@@ -67,7 +67,7 @@ public class ScreenshotManager {
 
 	public boolean takeScreenshot(By by, String screenshotName) throws IOException {
 
-		FluentWait<WebDriver> waiter = new FluentWait<>(driver);
+		FluentWait<WebDriver> waiter = new FluentWait<WebDriver>(driver);
 		waiter.withTimeout(configuration.getWaitDuration(), TimeUnit.SECONDS);
         try {
             WebElement element = waiter.until((ExpectedConditions.visibilityOfElementLocated(by)));
