@@ -68,6 +68,18 @@ Binoculars is fully configurable. Below is a full list of available configuratio
 - absorbFailures: If set to true, comparison mismatch will not fail the test (will not throw an AssertionError)
 - reporter: 
 
+##Comparison Engines
+At the very core of Binoculars lies the image comparison engine which does the actual analysis of screenshots and checks for mismatch.
+
+###ResembleJS Engine
+Binoculars uses Java implementation of [Resemble.js](http://huddle.github.io/Resemble.js/) image analysis and comparison algorithm. ResembleJS comparison engine supports different comparison modes:
+-  IgnoreNothing: Checks if the images are equal taking into account the full color and all pixels. Some light difference between the two images is still being tolerated
+- IgnoreAntialiasing: Same as above, but if a pixel is found to be anti-aliased, only brightness will becompared, instead of the full color component
+- IgnoreColors: Ignores the colors and compares only the brightness
+
+
+###Custom Engines
+		
 ##Reporting
 Bincoulars produces a detailed report of all comparisons. Reports will be generated in these cases:
 
