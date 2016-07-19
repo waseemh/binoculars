@@ -65,8 +65,12 @@ Binoculars is fully configurable. Below is a full list of available configuratio
 - resourceManager:
 - executor:
 - handler:
-- absorbFailures: If set to true, comparison mismatch failures will not throw an AssertionError.
+- absorbFailures: If set to true, comparison mismatch will not fail the test (will not throw an AssertionError)
 - reporter: 
 
 ##Reporting
-Bincoulars produces a detailed report of all comparisons. Reports will be generated in 
+Bincoulars produces a detailed report of all comparisons. Reports will be generated in these cases:
+
+- A mismatch occurs when comparing a specific element and 'absorbFailures' flag is set to false (by default)
+- When comparing all elements at once (by invoking compareAll())
+- By directly invoking generateReports() - Note that this operation will override existing reports when called multiple times during test.
