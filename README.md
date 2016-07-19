@@ -67,3 +67,6 @@ Binoculars is fully configurable. Below is a full list of available configuratio
 - handler:
 - absorbFailures: If set to true, comparison mismatch failures will not throw an AssertionError.
 - reporter: 
+
+##Reporting
+Bincoulars produces a detailed report of all comparisons. Reports will be generated in 
