@@ -49,9 +49,9 @@ binoculars.compareAll();
 Binoculars is fully configurable. Below is a full list of available configurations:
 
 - rootFolder: root folder for storing all screenshots
-- failuresFolder: folder for storing failed screenshots
-- screenshotsFolder: folder for storing captured screenshots
-- baselineFolder: folder for storing/loading baseline screenshots
+- screenshotsFolder: sub folder for storing captured screenshots
+- failuresFolder: sub folder for storing failed screenshots
+- baselineFolder: sub folder for storing/loading baseline screenshots
 - reportFolder: folder for report output
 - baselineMode: Force to run in baseline mode, overriding any previous captured screenshots
 - compareUponCapture: If set to true, screenshot comparison will be immediately after capturing
