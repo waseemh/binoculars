@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 
 import com.waseemh.sherlock.configuration.Configuration;
 import com.waseemh.sherlock.engines.external.geotools.ImageComparator;
-import com.waseemh.sherlock.exceptions.SherlockWrappedException;
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
 import com.waseemh.sherlock.exec.ComparisonResult;
 
 public class ResembleJsEngine implements ImageComparisonEngine {
@@ -48,7 +48,7 @@ public class ResembleJsEngine implements ImageComparisonEngine {
 			generateDiffImage(captureName,imageUnderTest);
 		}
 		catch (Exception e) {
-			throw new SherlockWrappedException(e);
+			throw new BinocularsWrappedException(e);
 		}
 
 		result.setMismatch(comparator.getMismatchPercent());

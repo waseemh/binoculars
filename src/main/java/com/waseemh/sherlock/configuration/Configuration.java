@@ -1,15 +1,15 @@
 package com.waseemh.sherlock.configuration;
 
-import java.awt.Color;
-
 import com.waseemh.sherlock.engines.ImageComparisonEngine;
 import com.waseemh.sherlock.exec.ComparisonResultHandler;
 import com.waseemh.sherlock.exec.ComparisonTasksExecutor;
 import com.waseemh.sherlock.report.Reporter;
-import com.waseemh.sherlock.webdriver.WebDriverWaiter;
+
+import java.awt.*;
 
 /**
  * Application configuration model.
+ *
  * Defines all configuration parameters related to application behavior.
  */
 
@@ -83,22 +83,45 @@ public abstract class Configuration {
 	 * Color to use for highlighting mismatch in diff images.
 	 */
 	private Color diffColor;
-	
+
+	/**
+	 * Screenshots resource manager
+	 */
 	private ResourceManager resourceManager;
-	
+
+	/**
+	 * Comparison task executor
+	 */
 	private ComparisonTasksExecutor executor;
-	
+
+	/**
+	 * Comparison result handler
+	 */
 	private ComparisonResultHandler handler;
 
 	/**
 	 * If set to true, comparison mismatch failures will not throw an AssertionError.
 	 */
 	private boolean absorbFailures;
-	
+
+	/**
+	 * Reporter
+	 */
 	private Reporter reporter;
-	
-	private WebDriverWaiter waiter;
-	
+
+	/**
+	 * Wait timeout in seconds when locating elements using WebDriver
+	 */
+	private long waitDuration;
+
+	public long getWaitDuration() {
+		return waitDuration;
+	}
+
+	public void setWaitDuration(long waitDuration) {
+		this.waitDuration = waitDuration;
+	}
+
 	public boolean isCompareUponCapture() {
 		return compareUponCapture;
 	}
@@ -213,12 +236,4 @@ public abstract class Configuration {
 	public void setReporter(Reporter reporter) {
 		this.reporter = reporter;
 	}
-	
-	public WebDriverWaiter getWaiter() {
-		return waiter;
-	}
-	public void setWaiter(WebDriverWaiter waiter) {
-		this.waiter = waiter;
-	}
-
 }

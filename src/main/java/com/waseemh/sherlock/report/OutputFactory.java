@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import org.apache.commons.io.FileUtils;
 
 import com.waseemh.sherlock.configuration.Configuration;
-import com.waseemh.sherlock.exceptions.SherlockWrappedException;
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
 
 
 public class OutputFactory {
@@ -40,7 +40,7 @@ public class OutputFactory {
 				FileOutputStream fos = FileUtils.openOutputStream(reportFile, true);
 				stream = new PrintStream(fos);
 			} catch (Exception e) {
-				throw new SherlockWrappedException(e);
+				throw new BinocularsWrappedException(e);
 			}
 			output = new HtmlOutput(stream);
 			break;

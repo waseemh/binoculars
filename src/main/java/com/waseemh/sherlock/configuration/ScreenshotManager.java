@@ -1,25 +1,21 @@
 package com.waseemh.sherlock.configuration;
 
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import com.waseemh.sherlock.webdriver.WebDriverWaiter;
+import java.util.concurrent.TimeUnit;
 
 public class ScreenshotManager {
 
-	WebDriver driver;
-	Configuration configuration;
+	private WebDriver driver;
+    private Configuration configuration;
 
 	public ScreenshotManager(WebDriver driver, Configuration configuration) {
 		this.driver = driver;
@@ -70,15 +66,16 @@ public class ScreenshotManager {
 	}
 
 	public boolean takeScreenshot(By by, String screenshotName) throws IOException {
-		WebElement element;
-		WebDriverWaiter waiter = configuration.getWaiter();
-		if(waiter!=null) {
-			element = waiter.waitForElement(by);
-		}
-		else {
-			element = driver.findElement(by);
-		}
-		return takeScreenshot(element,screenshotName);
+
+		FluentWait<WebDriver> waiter = new FluentWait<>(driver);
+		waiter.withTimeout(configuration.getWaitDuration(), TimeUnit.SECONDS);
+        try {
+            WebElement element = waiter.until((ExpectedConditions.visibilityOfElementLocated(by)));
+            return takeScreenshot(element,screenshotName);
+        } catch (TimeoutException e) {
+            throw new BinocularsWrappedException("Unable to find element using locator: " + by,e);
+        }
+
 	}
 
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.waseemh.sherlock.configuration.Configuration;
-import com.waseemh.sherlock.exceptions.SherlockWrappedException;
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
 import com.waseemh.sherlock.exec.ComparisonResult;
 import com.waseemh.sherlock.exec.ComparisonTask;
 import com.waseemh.sherlock.exec.ComparisonTasksExecutor;
@@ -47,7 +47,7 @@ public class ComparisonMultiThreadedExecutor implements ComparisonTasksExecutor{
 				result = pool.take().get();
 			}
 			catch (Exception e) {
-				throw new SherlockWrappedException(e);
+				throw new BinocularsWrappedException("Error while retrieving comparison result ",e);
 			}
 			results.add(result);
 		}

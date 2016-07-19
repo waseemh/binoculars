@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.waseemh.sherlock.configuration.Configuration;
 import com.waseemh.sherlock.events.EventListener;
-import com.waseemh.sherlock.exceptions.SherlockWrappedException;
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
 import com.waseemh.sherlock.exec.ComparisonResult;
 import com.waseemh.sherlock.report.OutputFactory.OutputType;
 
@@ -76,7 +76,7 @@ public class Reporter {
 		try {
 			OverviewGenerator.generate(configuration,reportData);
 		} catch (Exception e) {
-			throw new SherlockWrappedException(e);
+			throw new BinocularsWrappedException(e);
 		}
 	}
 

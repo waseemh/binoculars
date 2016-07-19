@@ -9,7 +9,7 @@ import org.openqa.selenium.support.How;
 import com.waseemh.sherlock.configuration.Configuration;
 import com.waseemh.sherlock.configuration.DefaultConfiguration;
 import com.waseemh.sherlock.configuration.ScreenshotManager;
-import com.waseemh.sherlock.exceptions.SherlockWrappedException;
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
 import com.waseemh.sherlock.exec.ComparisonTask;
 import com.waseemh.sherlock.exec.ComparisonTaskManager;
 import com.waseemh.sherlock.util.WebDriverUtil;
@@ -21,7 +21,7 @@ import com.waseemh.sherlock.util.WebDriverUtil;
  *
  */
 
-public class Sherlock {
+public class Binoculars {
 
 	/**
 	 * WebDriver instance for capturing elements
@@ -43,7 +43,7 @@ public class Sherlock {
 	 */
 	private ComparisonTaskManager comparisonTaskManager;
 
-	public Sherlock(WebDriver driver) {
+	public Binoculars(WebDriver driver) {
 		this.driver = driver;
 		this.configuration = new DefaultConfiguration();
 		this.comparisonTaskManager = new ComparisonTaskManager(configuration);
@@ -75,7 +75,7 @@ public class Sherlock {
 		try {
 			doCompare = screenshotManager.takeScreenshot(bySelector, screenshotName);
 		} catch (IOException e) {
-			throw new SherlockWrappedException(e);
+			throw new BinocularsWrappedException(e);
 		}
 		configuration.getReporter().reportAfterCapture(screenshotName);
 

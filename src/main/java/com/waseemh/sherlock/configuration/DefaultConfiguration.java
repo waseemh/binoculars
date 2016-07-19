@@ -10,7 +10,7 @@ import com.waseemh.sherlock.report.Reporter;
 public class DefaultConfiguration extends Configuration {
 	
 	public DefaultConfiguration() {
-		setRootFolder("sunglasses");
+		setRootFolder("binoculars");
 		setScreenshotsFolder("screenshots");
 		setFailuresFolder("failures");
 		setReportFolder("report");
@@ -26,6 +26,7 @@ public class DefaultConfiguration extends Configuration {
 		setExecutor(new ComparisonMultiThreadedExecutor(this));
 		setHandler(new ComparisonResultHandler(this));
 		setReporter((new Reporter(this)));
+		setWaitDuration(30);
 	}
 
 }

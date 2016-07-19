@@ -8,12 +8,12 @@ import org.apache.commons.io.FileUtils;
 
 import com.waseemh.sherlock.configuration.Configuration;
 import com.waseemh.sherlock.configuration.ResourceManager;
-import com.waseemh.sherlock.exceptions.SherlockWrappedException;
+import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
 import com.waseemh.sherlock.exceptions.UIRegressionException;
 
 public class ComparisonResultHandler {
 
-	Configuration configuration;
+	private Configuration configuration;
 
 	public ComparisonResultHandler(Configuration configuration) {
 		this.configuration = configuration;
@@ -37,7 +37,7 @@ public class ComparisonResultHandler {
 				try {
 					FileUtils.copyFile(diffImage, failureImage);
 				} catch (IOException eio) {
-					throw new SherlockWrappedException(eio);
+					throw new BinocularsWrappedException(eio);
 				}
 				
 				e = new UIRegressionException("UI regression found in capture: '" + captureName + "' with missmatch: " + result.getMismatch()+"%");
