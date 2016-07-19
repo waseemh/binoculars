@@ -20,7 +20,7 @@ To initialize Binoculars, you must provide it with a WebDriver object.
 
 ``` java
 WebDriver driver = new FirefoxDriver();
-binoculars = new Binoculars(driver);
+Binoculars binoculars = new Binoculars(driver);
 ```
 
 Binoculars is now ready to go! 
