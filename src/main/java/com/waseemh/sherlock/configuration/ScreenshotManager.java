@@ -42,25 +42,16 @@ public class ScreenshotManager {
 		BufferedImage eleScreenshot = fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
 		ImageIO.write(eleScreenshot, "png", screenshot);
 
-		//Set screenshot type (can be baseline, capture)
-		File baselineImage = configuration.getResourceManager().getBaselineImage(screenshotName);
-
-		//new capture file (can be baseline or capture)
-		File newCapture;
-
 		//check if baseline image doesn't exist (no comparison needed)
 		//or we are in baseline mode
-		if(!baselineImage.exists() || configuration.isBaselineMode()) { 
-			newCapture = baselineImage;
+		if(configuration.getResourceManager().isBaselineImageExists(screenshotName) || configuration.isBaselineMode()) {
+			configuration.getResourceManager().writeBaseline(screenshot,screenshotName);
 			doCompare=false;
 		}
 		else {
-			newCapture = configuration.getResourceManager().getCaptureImage(screenshotName);
+			configuration.getResourceManager().writeCaptureImage(screenshot,screenshotName);
 			doCompare=true;
 		}
-
-		//copy file to screenshots folder
-		FileUtils.copyFile(screenshot, newCapture);
 
 		return doCompare;
 	}

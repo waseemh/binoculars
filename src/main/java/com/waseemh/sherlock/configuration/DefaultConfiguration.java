@@ -13,6 +13,7 @@ public class DefaultConfiguration extends Configuration {
 		setRootFolder("binoculars");
 		setScreenshotsFolder("screenshots");
 		setFailuresFolder("failures");
+		setBaselineFolder("baseline");
 		setReportFolder("report");
 		setEngine(new ResembleJsEngine(this));
 		setBaselineExtension("baseline");

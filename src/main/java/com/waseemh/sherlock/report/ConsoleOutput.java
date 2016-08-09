@@ -11,30 +11,6 @@ public class ConsoleOutput extends PrintOutput{
 		super(stream);
 	}
 
-	public void beforeCapture(String captureName) {
-		print(FormattedProperty.BEFORE_CAPTURE, captureName);
-	}
-
-	public void afterCapture(String captureName) {
-		print(FormattedProperty.AFTER_CAPTURE, captureName);
-	}
-
-	public void beforeCompare(String captureName) {
-		print(FormattedProperty.BEFORE_COMPARE, captureName);
-	}
-
-	public void afterCompare(String captureName) {
-		print(FormattedProperty.AFTER_COMPARE, captureName);	
-	}
-
-	public void onSuccess(ComparisonResult result) {
-		print(FormattedProperty.ON_SUCCESS, result.getCaptureName(),new DecimalFormat("#0.##").format(result.getMismatch()));
-	}
-
-	public void onFail(ComparisonResult result) {
-		print(FormattedProperty.ON_FAIL, result.getCaptureName(),new DecimalFormat("#0.##").format(result.getMismatch()));
-	}
-
 	@Override
 	public void formatOutput() {
 		properties.setProperty(FormattedProperty.BEFORE_CAPTURE.toString(), "Capturing {0}");

@@ -1,13 +1,15 @@
 package com.waseemh.sherlock.report;
 
 import java.io.PrintStream;
+import java.text.DecimalFormat;
 import java.util.Properties;
 
 import com.waseemh.sherlock.events.EventListener;
+import com.waseemh.sherlock.exec.ComparisonResult;
 
 public abstract class PrintOutput implements EventListener {
 	
-	PrintStream printStream;
+	private PrintStream printStream;
 	
 	protected Properties properties = new Properties();
 	
@@ -34,6 +36,30 @@ public abstract class PrintOutput implements EventListener {
 	}
 
 	public abstract void formatOutput();
+
+	public void beforeCapture(String captureName) {
+		print(FormattedProperty.BEFORE_CAPTURE, captureName);
+	}
+
+	public void afterCapture(String captureName) {
+		print(FormattedProperty.AFTER_CAPTURE, captureName);
+	}
+
+	public void beforeCompare(String captureName) {
+		print(FormattedProperty.BEFORE_COMPARE, captureName);
+	}
+
+	public void afterCompare(String captureName) {
+		print(FormattedProperty.AFTER_COMPARE, captureName);
+	}
+
+	public void onSuccess(ComparisonResult result) {
+		print(FormattedProperty.ON_SUCCESS, result.getCaptureName(),new DecimalFormat("#0.##").format(result.getMismatch()));
+	}
+
+	public void onFail(ComparisonResult result) {
+		print(FormattedProperty.ON_FAIL, result.getCaptureName(),new DecimalFormat("#0.##").format(result.getMismatch()));
+	}
 	
 	protected enum FormattedProperty {
 		
