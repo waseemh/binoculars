@@ -1,6 +1,9 @@
 package com.waseemh.sherlock.configuration;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
+import java.io.IOException;
 
 /**
  *
@@ -27,7 +30,11 @@ public class ResourceManager {
 	}
 
 	public void writeBaseline(File newBaselineImage, String captureName) {
-
+		try {
+			FileUtils.copyFile(newBaselineImage,getBaselineImage(captureName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public File getCaptureImage(String captureName) {
@@ -35,19 +42,30 @@ public class ResourceManager {
 		return captureImage;
 	}
 
-	public void writeCaptureImage(File newBaselineImage, String captureName) {
-
+	public void writeCaptureImage(File newCaptureImage, String captureName) {
+		try {
+			FileUtils.copyFile(newCaptureImage,getCaptureImage(captureName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
 	
 	public File getDiffImage(String captureName) {
 		File captureImage = new File(configuration.getRootFolder()+File.separator+configuration.getScreenshotsFolder()+File.separator+captureName+"."+configuration.getDiffExtension()+".png");
 		return captureImage;
 	}
+
+	public void writeDiffImage(File diffImage, String captureName) {
+
+	}
 	
 	public File getFailImage(String captureName) {
 		File captureImage = new File(configuration.getRootFolder()+File.separator+configuration.getFailuresFolder()+File.separator+captureName+"."+configuration.getFailExtension()+".png");
 		return captureImage;
+	}
+
+	public void writeFailImage(File failImage, String captureName) {
+
 	}
 
 }

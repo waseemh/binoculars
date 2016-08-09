@@ -39,8 +39,8 @@ public class ResembleJsEngine implements ImageComparisonEngine {
 		ComparisonResult result = new ComparisonResult();
 		result.setCaptureName(captureName);
 
-		RenderedImage image1 = null;
-		RenderedImage image2 = null;
+		RenderedImage image1;
+		RenderedImage image2;
 		try {
 			image1 = ImageIO.read(baseline);
 			image2 = ImageIO.read(imageUnderTest);
