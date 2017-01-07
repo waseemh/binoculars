@@ -1,4 +1,4 @@
-# ![alt text](https://github.com/waseemh/binoculars/blob/master/binoculars-with-eyes-5.png?raw=true "Logo Title Text 1")
+# Binoculars
 
 Binoculars is an open source tool for automating visual regression tests for web and mobile, using Selenium WebDriver.
 
