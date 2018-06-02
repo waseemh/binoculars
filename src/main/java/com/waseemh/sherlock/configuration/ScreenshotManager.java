@@ -44,7 +44,7 @@ public class ScreenshotManager {
 
 		//check if baseline image doesn't exist (no comparison needed)
 		//or we are in baseline mode
-		if(configuration.getResourceManager().isBaselineImageExists(screenshotName) || configuration.isBaselineMode()) {
+		if(!configuration.getResourceManager().isBaselineImageExists(screenshotName) || configuration.isBaselineMode()) {
 			configuration.getResourceManager().writeBaseline(screenshot,screenshotName);
 			doCompare=false;
 		}
