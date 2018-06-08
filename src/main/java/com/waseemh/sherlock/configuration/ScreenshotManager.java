@@ -29,21 +29,16 @@ public class ScreenshotManager {
         //Get the location of element on the page
         Point point = element.getLocation();
 
-        //scroll to the view before taking the screenshot of the view
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("javascript:window.scrollTo(" + String.format("%d,%d", point.x, point.y) + ")");
-
         //read view screenshot
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         BufferedImage fullImg = ImageIO.read(screenshot);
-
 
         //Get element dimension
         int eleWidth = element.getSize().getWidth();
         int eleHeight = element.getSize().getHeight();
 
         //Crop the entire view screenshot to get only element screenshot
-        BufferedImage eleScreenshot = fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
+        BufferedImage eleScreenshot = fullImg.getSubimage(point.getX(), 0, eleWidth, eleHeight);
         ImageIO.write(eleScreenshot, "png", screenshot);
 
         //check if baseline image doesn't exist (no comparison needed)
@@ -61,9 +56,15 @@ public class ScreenshotManager {
 
     public boolean takeScreenshot(By by, String screenshotName) throws IOException {
         try {
+
             WebElement element = (WebElement) new FluentWait(driver)
                     .withTimeout(Duration.ofSeconds(configuration.getWaitDuration()))
                     .until(ExpectedConditions.visibilityOfElementLocated(by));
+
+            //scroll to the view before taking the screenshot of the view
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("javascript:window.scrollTo(" + String.format("%d,%d", element.getLocation().getX(), element.getLocation().getY()) + ")");
+
             return takeScreenshot(element, screenshotName);
         } catch (TimeoutException e) {
             throw new BinocularsWrappedException("Unable to find element using locator: " + by, e);
