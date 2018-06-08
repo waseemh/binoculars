@@ -1,7 +1,6 @@
 package com.waseemh.sherlock.configuration;
 
 import com.waseemh.sherlock.exceptions.BinocularsWrappedException;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -10,7 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class ScreenshotManager {
 
@@ -61,11 +60,10 @@ public class ScreenshotManager {
     }
 
     public boolean takeScreenshot(By by, String screenshotName) throws IOException {
-
-        FluentWait<WebDriver> waiter = new FluentWait<WebDriver>(driver);
-        waiter.withTimeout(configuration.getWaitDuration(), TimeUnit.SECONDS);
         try {
-            WebElement element = waiter.until((ExpectedConditions.visibilityOfElementLocated(by)));
+            WebElement element = (WebElement) new FluentWait(driver)
+                    .withTimeout(Duration.ofSeconds(configuration.getWaitDuration()))
+                    .until(ExpectedConditions.visibilityOfElementLocated(by));
             return takeScreenshot(element, screenshotName);
         } catch (TimeoutException e) {
             throw new BinocularsWrappedException("Unable to find element using locator: " + by, e);
